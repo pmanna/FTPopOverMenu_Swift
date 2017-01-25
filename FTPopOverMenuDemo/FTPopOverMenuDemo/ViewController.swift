@@ -85,6 +85,7 @@ extension ViewController {
         config.textFont = UIFont.systemFont(ofSize: 14)
         config.menuRowHeight = 40
         config.cornerRadius = 6
+        config.ignoreMenuTaps = false
     }
     
     func changeToWeChatStyle() {
@@ -102,6 +103,7 @@ extension ViewController {
         config.textFont = UIFont.systemFont(ofSize: 14)
         config.menuRowHeight = 40
         config.cornerRadius = 6
+        config.ignoreMenuTaps = false
 
     }
     
@@ -120,7 +122,7 @@ extension ViewController {
         config.textFont = UIFont.systemFont(ofSize: 16)
         config.menuRowHeight = 50
         config.cornerRadius = 20
-
+        config.ignoreMenuTaps = false
         
     }
     
@@ -139,6 +141,7 @@ extension ViewController {
         config.textFont = UIFont.systemFont(ofSize: 14)
         config.menuRowHeight = 40
         config.cornerRadius = 10
+        config.ignoreMenuTaps = true
     }
     
 }

@@ -48,6 +48,7 @@ public class FTConfiguration : NSObject {
     public var cornerRadius : CGFloat = FTDefaultCornerRadius
     public var textAlignment : NSTextAlignment = NSTextAlignment.left
     public var ignoreImageOriginalColor : Bool = false
+    public var ignoreMenuTaps: Bool = false
     public var menuSeparatorColor : UIColor = UIColor.lightGray
     public var menuSeparatorInset : UIEdgeInsets = UIEdgeInsetsMake(0, FTDefaultCellMargin, 0, FTDefaultCellMargin)
     
@@ -528,7 +529,7 @@ extension FTPopOverMenuView : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if (self.done != nil) {
+        if (!configuration.ignoreMenuTaps && self.done != nil) {
             self.done(indexPath.row)
         }
     }
@@ -550,6 +551,13 @@ extension FTPopOverMenuView : UITableViewDataSource {
             }
         }
         cell.setupCellWith(menuName: menuNameArray[indexPath.row], menuImage: imageName)
+        // We may have set it to ignore cell taps, so don't highlight cell
+        if (configuration.ignoreMenuTaps) {
+        	cell.selectionStyle	= .none
+        } else {
+            cell.selectionStyle = .default
+        }
+        
         if (indexPath.row == menuNameArray.count-1) {
             cell.separatorInset = UIEdgeInsetsMake(0, self.bounds.size.width, 0, 0)
         }else{
